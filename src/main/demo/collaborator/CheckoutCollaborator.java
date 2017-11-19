@@ -44,10 +44,8 @@ public class CheckoutCollaborator {
 
 	// -------------------------------------------------------------------------
 	public void continueCheckout() {
-		WebDriverUtil wdu = new WebDriverUtil();
 		SelectCheckoutMethodPage selectCheckoutMethodPage = new SelectCheckoutMethodPage();
 		selectCheckoutMethodPage.clickContinueCheckout();
-		wdu.waitForUrlChange();
 
 	}
 
@@ -73,7 +71,7 @@ public class CheckoutCollaborator {
 		checkoutPage.setCardNumber(creditCard.getNumber());
 		checkoutPage.setExpirationMonth(creditCard.getExpirationMonth());
 		checkoutPage.setExpirationYear(creditCard.getExpirationYear());
-		checkoutPage.setCarCvv(creditCard.getCvv());
+		checkoutPage.setCardCvv(creditCard.getCvv());
 	}
 
 	// -------------------------------------------------------------------------
@@ -91,22 +89,13 @@ public class CheckoutCollaborator {
 	// -------------------------------------------------------------------------
 	public void continueToDeliveryAddressAndPayment() {
 		CheckoutPage checkoutPage = new CheckoutPage();
-		WebDriverUtil wdu = new WebDriverUtil();
-		
 		checkoutPage.continueToDeliveryAddressAndPayment();
-		wdu.waitForUrlChange();
-		
 	}
 
 	// -------------------------------------------------------------------------
 	public void completeCheckout() {
 		CheckoutPage checkoutPage = new CheckoutPage();
-		WebDriverUtil wdu = new WebDriverUtil();
-		
 		checkoutPage.completeCheckout();
-		wdu.waitForUrlChange();
-
-		
 	}
 
 	// -------------------------------------------------------------------------

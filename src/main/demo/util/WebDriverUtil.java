@@ -6,10 +6,14 @@ import java.util.Set;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import demo.env.Environment;
 import demo.env.RunTimeError;
@@ -150,7 +154,7 @@ public class WebDriverUtil {
 	}
 
 	// -------------------------------------------------------------------
-	private static boolean waitSeconds(int i) {
+	private  boolean waitSeconds(int i) {
 
 		try {
 			Thread.sleep(i * 1000);
@@ -160,4 +164,31 @@ public class WebDriverUtil {
 		}
 	}
 
+	//----------------------------------------------------------------------
+	public void switchToIFrame (String iFrameXPath) {
+		WebElement iFrameWe;
+		
+		iFrameWe = this.driver.findElement(By.xpath(iFrameXPath));
+		for(int i=1; i<=10; i++){
+			try{
+				waitSeconds(1);
+				driver.switchTo().frame(iFrameWe);
+				this.waitSeconds(1);
+				break;
+			}catch (Exception e){
+				i=i+1;
+			}
+		}
+	}		
+
+	//------------------------------------------------------------------------------------------------------
+	public WebElement findAndWaitUntilClickable(String xpath) {
+		WebElement we;
+		WebDriverWait wait = new WebDriverWait(driver,30);
+		we = this.driver.findElement(By.xpath(xPath));
+		wait.until(ExpectedConditions.elementToBeClickable(we));
+		return we;
+	}
+
+	
 }

@@ -57,7 +57,10 @@ public class SelectCheckoutMethodPage extends BasePage {
 	
 	// ------------------------------------------------------------------------
 	public void clickContinueCheckout(){
-		
+		WebElement continueCheckoutButtonWe;
+		continueCheckoutButtonWe = this.driver.findElement(By.
+				xpath("//*[@id=\"ctl00_CP_UcCheckoutSignInUC_btnSubmitOrder\"]/span"));
+		continueCheckoutButtonWe.click();
 	}
 	
 }

@@ -29,7 +29,7 @@ public class BbyData {
 	public Customer getCustomer_A() {
 		Customer customer = new Customer();
 		
-		customer.setFirstName("Daminel");
+		customer.setFirstName("Daniel");
 		customer.setLastName("Sedin");
 		customer.setAddress("9050 Forest Grove Dr");
 		customer.setCity("Burnaby");

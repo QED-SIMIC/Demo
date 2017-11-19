@@ -94,7 +94,7 @@ public class BbyTest {
 		checkout.populateCreditCard(creditCard);
 		checkout.populateBillingAddress(billingAddress);
 		checkout.completeCheckout();
-		errorMessageDisplayed = checkout.verifyErrorMessageDisplayed(errorMessage);			);
+		errorMessageDisplayed = checkout.verifyErrorMessageDisplayed(errorMessage);	
 		Assert.assertTrue(errorMessageDisplayed);
 		
 	}		
