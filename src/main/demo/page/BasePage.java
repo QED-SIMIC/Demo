@@ -19,8 +19,8 @@ public abstract class BasePage {
 	// ----------------------------------------------------------------------
 	public void enterGlobalSearchString(String searchString) {
 		WebElement searchFieldWe;
-		searchFieldWe = this.driver.findElement(By.xpath
-				("//*[@id=\"ctl00_MasterHeader_ctl00_uchead_GlobalSearchUC_TxtSearchKeyword\"]"));
+		searchFieldWe = this.driver
+				.findElement(By.xpath("//*[@id=\"ctl00_MasterHeader_ctl00_uchead_GlobalSearchUC_TxtSearchKeyword\"]"));
 		searchFieldWe.clear();
 		searchFieldWe.sendKeys(searchString);
 
@@ -29,8 +29,8 @@ public abstract class BasePage {
 	// ----------------------------------------------------------------------
 	public void globalSearch() {
 		WebElement searchButtonWe;
-		searchButtonWe = this.driver.findElement
-				(By.xpath("//*[@id=\"ctl00_MasterHeader_ctl00_uchead_GlobalSearchUC_BtnSubmitSearch\"]/i"));
+		searchButtonWe = this.driver
+				.findElement(By.xpath("//*[@id=\"ctl00_MasterHeader_ctl00_uchead_GlobalSearchUC_BtnSubmitSearch\"]/i"));
 		searchButtonWe.click();
 
 	}

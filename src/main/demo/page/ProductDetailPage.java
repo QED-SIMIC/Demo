@@ -7,26 +7,25 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ProductDetailPage extends BasePage {
 
-	
 	// ------------------------------------------------------------------------
 	public ProductDetailPage() {
 		super();
 	}
-	
+
 	// ------------------------------------------------------------------------
-	public void addToCart(){
+	public void addToCart() {
 		WebElement addToCartButtonWe;
 		addToCartButtonWe = this.driver.findElement(By.xpath("//*[@id=\"btn-cart\"]"));
 		addToCartButtonWe.click();
 	}
 
 	// ------------------------------------------------------------------------
-	public void proceedToCheckout(){
+	public void proceedToCheckout() {
 		WebElement proceedToCheckoutButtonWe;
-		WebDriverWait wait = new WebDriverWait(driver,30);
-		
-		proceedToCheckoutButtonWe = this.driver.findElement(By.xpath("//*[@id=\"express-checkout\"]"));
-		wait.until(ExpectedConditions.elementToBeClickable(proceedToCheckoutButtonWe));
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+
+		proceedToCheckoutButtonWe = wait
+				.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"express-checkout\"]")));
 		proceedToCheckoutButtonWe.click();
 	}
 

@@ -2,13 +2,13 @@ package demo.env;
 
 public class RunTimeError {
 
-	// -------------------------------------------------------------
+	// ------------------------------------------------------------------------
 	public static void raiseStatic(String errorMessage) {
 
 		throw new RuntimeException(errorMessage);
 	}
 
-	// -------------------------------------------------------------
+	// ------------------------------------------------------------------------
 	public static String exceptionToString(Exception ex) {
 
 		StringBuffer sb = new StringBuffer();
@@ -28,7 +28,7 @@ public class RunTimeError {
 		return exceptionImage;
 	}
 
-	// -----------------------------------------------------------------------
+	// ------------------------------------------------------------------------
 	public static String throwableToString(Throwable ex) {
 
 		StringBuffer sb = new StringBuffer();

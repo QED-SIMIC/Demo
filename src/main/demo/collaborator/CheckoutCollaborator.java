@@ -1,7 +1,5 @@
 package demo.collaborator;
 
-import static demo.bo.Checkout.CheckoutMethod.*;
-
 import java.util.List;
 
 import demo.bo.Address;
@@ -12,7 +10,6 @@ import demo.bo.Customer;
 import demo.env.RunTimeError;
 import demo.page.CheckoutPage;
 import demo.page.SelectCheckoutMethodPage;
-import demo.util.WebDriverUtil;
 
 public class CheckoutCollaborator {
 
@@ -103,11 +100,11 @@ public class CheckoutCollaborator {
 		CheckoutPage checkoutPage = new CheckoutPage();
 		List<String> errorMessages;
 		boolean errorMessageDisplayed = false;
-		
-		errorMessages = checkoutPage.getDisplayederrorMessages();
 
-		for(String errorMessage : errorMessages){
-			if(errorMessage.contains(expectedErrorMessage)){
+		errorMessages = checkoutPage.getDisplayedErrorMessages();
+
+		for (String errorMessage : errorMessages) {
+			if (errorMessage.contains(expectedErrorMessage)) {
 				errorMessageDisplayed = true;
 				break;
 			}

@@ -24,7 +24,7 @@ public class CheckoutPage extends BasePage {
 
 	private WebElementUtil weu;
 
-	// -----------------------------------------------------------------------
+	// ------------------------------------------------------------------------
 	public void setFirstName(String firstName) {
 		this.weu.setTextField(firstName,
 				"//*[@id=\"ctl00_CP_checkoutSections_ctl01_DeliveryOptionTabs1_manageShippingAddress_oeaUseNew_addressUC_FirstNameContainer_TxtFirstName\"]");
@@ -69,7 +69,7 @@ public class CheckoutPage extends BasePage {
 				"//*[@id=\"ctl00_CP_checkoutSections_ctl01_DeliveryOptionTabs1_manageShippingAddress_oeaUseNew_addressUC_Phone2Container_TxtPhone2\"]");
 	}
 
-	// ------------------------------------------------------------------------------------------------------
+	// ------------------------------------------------------------------------
 	public void continueToDeliveryAddressAndPayment() {
 		WebElement continueButonWe;
 
@@ -78,56 +78,54 @@ public class CheckoutPage extends BasePage {
 		continueButonWe.click();
 	}
 
-	// ------------------------------------------------------------------------------------------------------
+	// ------------------------------------------------------------------------
 	public void selectCreditCardType(CreditCardType creditCardType) {
 		WebElement selectCreditCardWe;
-		WebDriverUtil wdu = new WebDriverUtil();
+		WebDriverWait wait = new WebDriverWait(driver, 30);
 
 		switch (creditCardType) {
 		case VISA:
-			selectCreditCardWe = this.driver
-					.findElement(By.xpath("//*[@id=\"ctl00_CP_checkoutSections_ctl03_ucPaymentEdit_lnkCreditCard\"]"));
-			// wdu.switchToIFrame("//*[@id=\"destination_publishing_iframe_bestbuycanada_0\"]");
+			selectCreditCardWe = wait.until(ExpectedConditions.elementToBeClickable(
+					By.xpath("//*[@id=\"ctl00_CP_checkoutSections_ctl03_ucPaymentEdit_lnkCreditCard\"]")));
 			selectCreditCardWe.click();
 			break;
 		default:
 			RunTimeError.raiseStatic("Unsupported Credit Card Type => " + creditCardType.name());
 		}
-
 	}
 
-	// ------------------------------------------------------------------------------------------------------
+	// ------------------------------------------------------------------------
 	public void setCardNumber(String number) {
 		this.weu.setTextField(number,
 				"//*[@id=\"ctl00_CP_checkoutSections_ctl03_ucPaymentEdit_UCEditCreditCard_AddCreditCardUC_CreditCardNumberContainer_TxtCardNumber\"]");
 	}
 
-	// ------------------------------------------------------------------------------------------------------
+	// ------------------------------------------------------------------------
 	public void setExpirationMonth(String expirationMonth) {
 		this.weu.selectInDropDownListByVisibleText(expirationMonth,
 				"//*[@id=\"ctl00_CP_checkoutSections_ctl03_ucPaymentEdit_UCEditCreditCard_AddCreditCardUC_MonthContainer_DdlMonth\"]");
 	}
 
-	// ------------------------------------------------------------------------------------------------------
+	// ------------------------------------------------------------------------
 	public void setExpirationYear(String expirationYear) {
 		this.weu.selectInDropDownListByVisibleText(expirationYear,
 				"//*[@id=\"ctl00_CP_checkoutSections_ctl03_ucPaymentEdit_UCEditCreditCard_AddCreditCardUC_YearContainer_DdlYear\"]");
 	}
 
-	// ------------------------------------------------------------------------------------------------------
+	// ------------------------------------------------------------------------
 	public void setCardCvv(String cvv) {
 		this.weu.setTextField(cvv,
 				"//*[@id=\"ctl00_CP_checkoutSections_ctl03_ucPaymentEdit_UCEditCreditCard_AddCreditCardUC_CIDNumberContainer_TxtCID\"]");
 	}
 
-	// ------------------------------------------------------------------------------------------------------
+	// ------------------------------------------------------------------------
 	public void setConfiramtionEmal(String confirmationEmail) {
 		this.weu.setTextField(confirmationEmail,
 				"//*[@id=\"ctl00_CP_checkoutSections_ctl03_ucPaymentEdit_TxtEmailAddress\"]");
 
 	}
 
-	// ------------------------------------------------------------------------------------------------------
+	// ------------------------------------------------------------------------
 	public void setBillingAddresSamesAsShipping(Boolean billingAddresSamesAsShipping) {
 		WebElement billingAddresSameAsShippingWe;
 		billingAddresSameAsShippingWe = this.driver.findElement(By.xpath(
@@ -141,17 +139,17 @@ public class CheckoutPage extends BasePage {
 
 	}
 
-	// ------------------------------------------------------------------------------------------------------
+	// ------------------------------------------------------------------------
 	public void completeCheckout() {
 		WebElement continueButonWe;
 		WebDriverWait wait = new WebDriverWait(driver, 30);
-		continueButonWe = this.driver.findElement(
-				By.xpath("//*[@id=\"ctl00_CP_checkoutSections_ctl03_ucPaymentEdit_BtnContinueFromPayment\"]/span"));
-		wait.until(ExpectedConditions.elementToBeClickable(continueButonWe));
+
+		continueButonWe = wait.until(ExpectedConditions.elementToBeClickable(
+				By.xpath("//*[@id=\"ctl00_CP_checkoutSections_ctl03_ucPaymentEdit_BtnContinueFromPayment\"]/span")));
 		continueButonWe.click();
 	}
 
-	// ------------------------------------------------------------------------------------------------------
+	// ------------------------------------------------------------------------
 	public void completeCheckout2() {
 		WebElement continueButonWe;
 		WebDriverUtil wdu = new WebDriverUtil();
@@ -160,23 +158,20 @@ public class CheckoutPage extends BasePage {
 		continueButonWe.click();
 	}
 
-	// ------------------------------------------------------------------------------------------------------
-	public List<String> getDisplayederrorMessages() {
+	// ------------------------------------------------------------------------
+	public List<String> getDisplayedErrorMessages() {
 
-		List displayedErrorMessages = new ArrayList<String>();
+		List<String> displayedErrorMessages = new ArrayList<String>();
 
 		WebElement topWe;
 		List<WebElement> messageWes;
-		String styleAttributeValue = null;
 
-		topWe = this.driver.findElement(By.xpath("//*[@id=\"divCheckoutContent\"]/div/div[1]"));
+		topWe = this.driver.findElement(By.xpath("//*[@id=\"ctl00_CP_ErrorSummaryUC12_ValidationSummary1\"]/ul"));
 
-		messageWes = topWe.findElements(By.tagName("div"));
+		messageWes = topWe.findElements(By.xpath("./li"));
 
 		for (WebElement we : messageWes) {
-			if ("display: block;".equals(styleAttributeValue)) {
-				displayedErrorMessages.add(we.getText());
-			}
+			displayedErrorMessages.add(we.getText());
 		}
 		return displayedErrorMessages;
 	}

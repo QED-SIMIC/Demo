@@ -6,11 +6,9 @@ import demo.util.WebDriverUtil;
 
 public class ResultClerk {
 
-
 	private static final String RESULT_LOG_DEFAULT_FILE = "C:\\Data\\Results\\QS_TestResultLog";
 
 	private Date testBeginTimestamp;
-
 
 	private static ResultClerk resultClerkOnDuty = new ResultClerk(RESULT_LOG_DEFAULT_FILE);
 	private static Boolean lastTestPassed = false;
@@ -19,9 +17,12 @@ public class ResultClerk {
 	// --------------------------------------------------------------------
 	// Private Constructor to Make Singleton
 	private ResultClerk(String resultLogFilePath) {
-		//The commented lines below are left to illustrate how program execution time can be recorded
-		//this.logFileLineWriter = new FileLineWriter(resultLogFilePath, FileLineWriter.APPEND_MODE_TRUE);
-		///this.executionTimeLog = new FileLineWriter(EXEC_TIME_LOG, FileLineWriter.APPEND_MODE_TRUE);
+		// The commented lines below are left to illustrate how program
+		// execution time can be recorded
+		// this.logFileLineWriter = new FileLineWriter(resultLogFilePath,
+		// FileLineWriter.APPEND_MODE_TRUE);
+		/// this.executionTimeLog = new FileLineWriter(EXEC_TIME_LOG,
+		// FileLineWriter.APPEND_MODE_TRUE);
 
 	}
 
@@ -47,16 +48,14 @@ public class ResultClerk {
 
 	// -----------------------------------------------------------------
 	public void recordTestPass(String testMethod) {
-		final boolean TEST_PASS = true;
-		String testCaseName = null;
+		
 		StringBuffer sb = new StringBuffer();
 		ResultClerk.lastTestPassed = true;
-		WebDriverUtil wdu;
 
 		sb.append("+++ recordTestPass ");
 		sb.append(testMethod);
 		this.log(sb.toString());
-		//Here you can record result into the test repository tool
+		// Here you can record result into the test repository tool
 
 	}
 
@@ -67,12 +66,12 @@ public class ResultClerk {
 		WebDriverUtil wdu;
 
 		sb.append(", ");
-		//sb.append(TimeUtil.getTimeStampImage(testEndTimestamp));
+		// sb.append(TimeUtil.getTimeStampImage(testEndTimestamp));
 		sb.append(", ");
 		sb.append(testEndTimestamp);
 		sb.append(testMethod);
 		sb.append(("\n"));
-		
+
 		this.log(sb.toString());
 
 		// Here you can record result into the test repository tool
@@ -80,12 +79,9 @@ public class ResultClerk {
 		this.saveScreenshot(testMethod);
 	}
 
-
 	// -----------------------------------------------------------------
 	public void recordTestFail(String testMethod, String exceptionTrace) {
 
-		final boolean TEST_FAIL = false;
-		String testCaseName = null;
 		StringBuffer sb = new StringBuffer();
 		ResultClerk.lastTestPassed = false;
 		WebDriverUtil wdu;
@@ -100,7 +96,7 @@ public class ResultClerk {
 		// Here you can record result into the test repository tool
 		wdu = new WebDriverUtil();
 		this.saveScreenshot(testMethod);
-		//wdu.close();
+		// wdu.close();
 
 	}
 
@@ -108,16 +104,14 @@ public class ResultClerk {
 	private void log(String message) {
 		StringBuffer sb = new StringBuffer();
 		sb.append("\n");
-		//sb.append(timeStamp);
+		// sb.append(timeStamp);
 		sb.append("--");
 		sb.append(message);
 	}
 
-	
-
 	// ----------------------------------------------------------
 	private void saveScreenshot(String methodName) {
-		
+
 		StringBuffer sb = new StringBuffer();
 		WebDriverUtil wdu = new WebDriverUtil();
 
@@ -125,8 +119,8 @@ public class ResultClerk {
 		sb.append(".");
 		sb.append(methodName);
 		sb.append(".png");
-		
+
 		wdu.takeScreenshot(sb.toString());
 	}
-	
+
 }

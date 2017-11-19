@@ -1,7 +1,6 @@
 package demo.sandboxbby;
 
 import org.apache.log4j.BasicConfigurator;
-import static demo.bo.Checkout.CheckoutMethod.*;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;
@@ -51,7 +50,7 @@ public class BbyTest {
 	// ----------------------------------------------------------
 	@Before
 	public void beforeTest() {
-		
+
 		BasicConfigurator.configure();
 		env = new Environment();
 		driver = this.env.createAndSetWebDriver();
@@ -68,34 +67,34 @@ public class BbyTest {
 		CreditCard creditCard;
 		Address billingAddress;
 		boolean errorMessageDisplayed = false;
-		String errorMessage = "The format of the credit card number entered does not match the card type you specified. Please check for accuracy and try again. (0018)"; 
-		
+		String errorMessage = "The format of the credit card number entered does not match the card type you specified. Please check for accuracy and try again. (0018)";
+
 		BbyData bbyData = new BbyData();
 		SearchCollaborator search = new SearchCollaborator();
 		CheckoutCollaborator checkout = new CheckoutCollaborator();
-		
+
 		product = bbyData.getProduct_A();
 		checkoutMethod = bbyData.getCheckoutMethod_A();
 		customer = bbyData.getCustomer_A();
 		creditCard = bbyData.getCreaditCard_A();
-		billingAddress = bbyData.getbillingAddress_A(); 
-		
+		billingAddress = bbyData.getbillingAddress_A();
+
 		driver.get("https://www.bestbuy.ca/");
-		
+
 		search.globalSearchProduct(product);
 		search.navigateToProductDetail(product);
 		search.addProductToCart();
 		search.proceedToCheckout();
-		
+
 		checkout.selectCheckoutMethod(checkoutMethod);
 		checkout.continueCheckout();
-		checkout.populateCustomer (customer);
+		checkout.populateCustomer(customer);
 		checkout.continueToDeliveryAddressAndPayment();
 		checkout.populateCreditCard(creditCard);
 		checkout.populateBillingAddress(billingAddress);
 		checkout.completeCheckout();
-		errorMessageDisplayed = checkout.verifyErrorMessageDisplayed(errorMessage);	
+		errorMessageDisplayed = checkout.verifyErrorMessageDisplayed(errorMessage);
 		Assert.assertTrue(errorMessageDisplayed);
-		
-	}		
+
+	}
 }
