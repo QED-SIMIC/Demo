@@ -3,7 +3,7 @@ package demo.harness;
 import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
 
-import demo.env.RunTimeError;
+import demo.env.RuntimeError;
 
 public class ResultMonitor {
 
@@ -17,7 +17,7 @@ public class ResultMonitor {
 		protected void failed(Throwable ex, Description description) {
 
 			String testMethod = description.getMethodName();
-			resultClerk.recordTestFail(testMethod, RunTimeError.throwableToString(ex));
+			resultClerk.recordTestFail(testMethod, RuntimeError.throwableToString(ex));
 
 		}
 

@@ -7,6 +7,13 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ProductDetailPage extends BasePage {
 
+	/**
+	 * Implements user action on the Product Detail Page: Add to cart Proceed to
+	 * chekout
+	 */
+	private final static String ADD_TO_CART_BUTTON_XPATH = "//*[@id=\"btn-cart\"]";
+	private final static String EXPRESS_CHECKOUT_BUTTON_XPATH = "//*[@id=\"express-checkout\"]";
+
 	// ------------------------------------------------------------------------
 	public ProductDetailPage() {
 		super();
@@ -15,7 +22,7 @@ public class ProductDetailPage extends BasePage {
 	// ------------------------------------------------------------------------
 	public void addToCart() {
 		WebElement addToCartButtonWe;
-		addToCartButtonWe = this.driver.findElement(By.xpath("//*[@id=\"btn-cart\"]"));
+		addToCartButtonWe = this.driver.findElement(By.xpath(ADD_TO_CART_BUTTON_XPATH));
 		addToCartButtonWe.click();
 	}
 
@@ -25,7 +32,7 @@ public class ProductDetailPage extends BasePage {
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 
 		proceedToCheckoutButtonWe = wait
-				.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"express-checkout\"]")));
+				.until(ExpectedConditions.elementToBeClickable(By.xpath(EXPRESS_CHECKOUT_BUTTON_XPATH)));
 		proceedToCheckoutButtonWe.click();
 	}
 

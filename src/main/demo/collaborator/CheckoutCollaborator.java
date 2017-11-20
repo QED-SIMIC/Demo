@@ -7,20 +7,33 @@ import demo.bo.Checkout;
 import demo.bo.Checkout.CheckoutMethod;
 import demo.bo.CreditCard;
 import demo.bo.Customer;
-import demo.env.RunTimeError;
+import demo.env.RuntimeError;
 import demo.page.CheckoutPage;
 import demo.page.SelectCheckoutMethodPage;
 
 public class CheckoutCollaborator {
 
+	   /** 
+     * CheckoutCollaborator implements the set of operations that a user
+     * performs during the checkout process.
+     */
+	
+	
+	
+	private SelectCheckoutMethodPage selectCheckoutMethodPage;
+	private CheckoutPage checkoutPage;
+	
 	// -------------------------------------------------------------------------
 	public CheckoutCollaborator() {
-
+		this.selectCheckoutMethodPage = new SelectCheckoutMethodPage();
+		this.checkoutPage = new CheckoutPage();
 	}
 
 	// -------------------------------------------------------------------------
+	/**
+	 * @param checkout - Checkout method to execute (Guest/Member)
+	 */
 	public void selectCheckoutMethod(Checkout checkout) {
-		SelectCheckoutMethodPage selectCheckoutMethodPage = new SelectCheckoutMethodPage();
 		CheckoutMethod requestedCheckoutMethod;
 
 		requestedCheckoutMethod = checkout.getCheckoutMethod();
@@ -35,20 +48,26 @@ public class CheckoutCollaborator {
 			selectCheckoutMethodPage.setMemberPassword(checkout.getPassword());
 			break;
 		default:
-			RunTimeError.raiseStatic("Unsupported CheckoutMethod => " + requestedCheckoutMethod.name());
+			RuntimeError.raiseStatic("Unsupported CheckoutMethod => " + requestedCheckoutMethod.name());
 		}
 	}
 
 	// -------------------------------------------------------------------------
+	/**
+	 * Clicks COntinue to Checkut Button
+	 */
 	public void continueCheckout() {
-		SelectCheckoutMethodPage selectCheckoutMethodPage = new SelectCheckoutMethodPage();
 		selectCheckoutMethodPage.clickContinueCheckout();
 
 	}
 
 	// -------------------------------------------------------------------------
+	/**
+	 * Populate Customer data
+	 * 
+	 * @param customer Customer object with values to enter on the page.
+	 */
 	public void populateCustomer(Customer customer) {
-		CheckoutPage checkoutPage = new CheckoutPage();
 
 		checkoutPage.setFirstName(customer.getFirstName());
 		checkoutPage.setLastName(customer.getLastName());
@@ -61,8 +80,12 @@ public class CheckoutCollaborator {
 	}
 
 	// -------------------------------------------------------------------------
+	/**
+	 * Populates Credit Card information on the page
+	 * 
+	 * @param creditCard - Credit Card information to enter on the page.
+	 */
 	public void populateCreditCard(CreditCard creditCard) {
-		CheckoutPage checkoutPage = new CheckoutPage();
 
 		checkoutPage.selectCreditCardType(creditCard.getCreditCardType());
 		checkoutPage.setCardNumber(creditCard.getNumber());
@@ -72,32 +95,45 @@ public class CheckoutCollaborator {
 	}
 
 	// -------------------------------------------------------------------------
+	/**
+	 * Populates billing information.
+	 * 
+	 * @param billingAddress - Billing inforamtion info to enter on the page.
+	 */
 	public void populateBillingAddress(Address billingAddress) {
-		CheckoutPage checkoutPage = new CheckoutPage();
 
 		if (billingAddress.getBillingAddresSamesAsShipping().booleanValue()) {
 			checkoutPage.setBillingAddresSamesAsShipping(billingAddress.getBillingAddresSamesAsShipping());
 		} else {
-			RunTimeError.raiseStatic("Unsupported Entry of BIlling Address");
+			RuntimeError.raiseStatic("Unsupported Entry of BIlling Address");
 		}
 		checkoutPage.setConfiramtionEmal(billingAddress.getConfirmationEmail());
 	}
 
 	// -------------------------------------------------------------------------
+	/**
+	 * CLicks Continue to Delivery addres and Payment button.
+	 */
 	public void continueToDeliveryAddressAndPayment() {
-		CheckoutPage checkoutPage = new CheckoutPage();
 		checkoutPage.continueToDeliveryAddressAndPayment();
 	}
 
 	// -------------------------------------------------------------------------
+	/**
+	 * clicks complete Checkout button.
+	 */
 	public void completeCheckout() {
-		CheckoutPage checkoutPage = new CheckoutPage();
 		checkoutPage.completeCheckout();
 	}
 
 	// -------------------------------------------------------------------------
+	/**
+	 * Verifies that the page displays the given error message.
+	 * 
+	 * @param expectedErrorMessage - Expected Error Me3ssage Test 
+	 * @return true if the page displays the expected mesage.
+	 */
 	public boolean verifyErrorMessageDisplayed(String expectedErrorMessage) {
-		CheckoutPage checkoutPage = new CheckoutPage();
 		List<String> errorMessages;
 		boolean errorMessageDisplayed = false;
 

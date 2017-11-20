@@ -3,7 +3,7 @@ package demo.bo;
 public class CreditCard {
 
 	public enum CreditCardType {
-		VISA, MASTER_CARD, AMERICAN_EXPRESS, PAY_PAL
+		VISA, MASTER_CARD, AMERICAN_EXPRESS,
 	};
 
 	public CreditCard(CreditCardType creditCardType) {

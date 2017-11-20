@@ -18,7 +18,7 @@ public class PhoneTest {
 
 		Assert.assertTrue("604".equals(phone.getAreaCode()));
 		Assert.assertTrue("421".equals(phone.getLocalExchangeCode()));
-		Assert.assertTrue("2345".equals(phone.getNumber()));
+		Assert.assertTrue("2345".equals(phone.getLocalExchangeNumber()));
 
 	}
 }

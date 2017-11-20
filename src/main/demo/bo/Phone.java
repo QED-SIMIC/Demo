@@ -2,14 +2,26 @@ package demo.bo;
 
 public class Phone {
 
-	public Phone(String phoneAreaDashExchageDashNumber) {
-		this.phoneNumber = phoneAreaDashExchageDashNumber;
-	}
+	/**
+	 * Phone initial abstraction. Phone splits the phone number in the format
+	 * <Area Code>-<Local Exchange Number>-<Local Branch Number> into the
+	 * composite parts.
+	 */
 
 	private String phoneNumber;
+	private String areaCode;
+	private String localExchangeCode;
+	private String localExchangeNumber;
+
+	public Phone(String phoneAreaDashExchageDashNumber) {
+		this.phoneNumber = phoneAreaDashExchageDashNumber;
+		this.areaCode = extractAreaCode();
+		this.localExchangeCode = this.extractLocalExchangeCode();
+		this.localExchangeNumber = this.extractLocalExchangeNumber();
+	}
 
 	// ------------------------------------------------------------------------
-	public String getAreaCode() {
+	private String extractAreaCode() {
 		String areaCode = null;
 		int firstDashIx = 0;
 
@@ -21,7 +33,7 @@ public class Phone {
 	}
 
 	// ------------------------------------------------------------------------
-	public String getLocalExchangeCode() {
+	private String extractLocalExchangeCode() {
 		String localExchangeCode = null;
 		int firstDashIx = -1, secondDashIx = -1;
 
@@ -34,7 +46,7 @@ public class Phone {
 	}
 
 	// ------------------------------------------------------------------------
-	public String getNumber() {
+	private String extractLocalExchangeNumber() {
 		String number = null;
 		int ixFirst = 0, ixLast = 0;
 
@@ -47,8 +59,40 @@ public class Phone {
 	}
 
 	// ------------------------------------------------------------------------
-	public String getCompleteNumber() {
+	public String getNumber() {
 		return this.phoneNumber;
+	}
+
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+	public String getAreaCode() {
+		return areaCode;
+	}
+
+	public void setAreaCode(String areaCode) {
+		this.areaCode = areaCode;
+	}
+
+	public String getLocalExchangeCode() {
+		return localExchangeCode;
+	}
+
+	public void setLocalExchangeCode(String localExchangeCode) {
+		this.localExchangeCode = localExchangeCode;
+	}
+
+	public String getLocalExchangeNumber() {
+		return localExchangeNumber;
+	}
+
+	public void setLocalExchangeNumber(String localExchangeNumber) {
+		this.localExchangeNumber = localExchangeNumber;
 	}
 
 }

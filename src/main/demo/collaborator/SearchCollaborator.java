@@ -8,27 +8,43 @@ import demo.util.WebDriverUtil;
 
 public class SearchCollaborator {
 
-	
-//-------------------------------------------------------------------------
-public SearchCollaborator(){
-		
+	/**
+	 * SearchCollaborator implements the set of operations that a user performs
+	 * during the search.
+	 */
+
+	private AnyPage anyPage;
+	private SearchResultsPage searchResultsPage;
+	private ProductDetailPage productDetailPage;
+	private WebDriverUtil wdu;
+
+	// -------------------------------------------------------------------------
+	public SearchCollaborator() {
+		this.anyPage = new AnyPage();
+		searchResultsPage = new SearchResultsPage();
+		productDetailPage = new ProductDetailPage();
+		this.wdu = new WebDriverUtil();
 	}
 
-	//-------------------------------------------------------------------------
+	// -------------------------------------------------------------------------
+	/*
+	 * Executes global search for the given product
+	 */
+	/**
+	 * @param product - Product for which this method executes global searc.
+	 */
 	public void globalSearchProduct(Product product) {
-		AnyPage anyPage = new AnyPage();
-		WebDriverUtil wdu = new WebDriverUtil();
 		StringBuffer sb = new StringBuffer();
-		
-		if(product.getProductType() != null){
+
+		if (product.getProductType() != null) {
 			sb.append(product.getProductType().name());
 		}
 		sb.append(" ");
-		if(product.getManufacturer() != null){
+		if (product.getManufacturer() != null) {
 			sb.append(product.getManufacturer());
 		}
 		sb.append(" ");
-		if(product.getModel() != null){
+		if (product.getModel() != null) {
 			sb.append(product.getModel());
 		}
 		anyPage.enterGlobalSearchString(sb.toString());
@@ -36,26 +52,36 @@ public SearchCollaborator(){
 		wdu.waitForUrlChange();
 	}
 
-	//-------------------------------------------------------------------------
+	// -------------------------------------------------------------------------
+	/** Selects the first product that matches the given product and
+	 * navigates to Product Detail Page for the product.
+	 * 
+	 * @param product - Product to match, i.e. product description 
+	 * on the page contains the product'smanufacturer and model.
+	 */
 	public void navigateToProductDetail(Product product) {
-		SearchResultsPage searchResultsPage = new SearchResultsPage();
-		WebDriverUtil wdu = new WebDriverUtil();
 		searchResultsPage.navigateToProductDetail(product);
 		wdu.waitForUrlChange();
-		
+
 	}
 
-	//-------------------------------------------------------------------------
+	// -------------------------------------------------------------------------
+	/**
+	 * Clicks Add to Cart Button
+	 */
+	/**
+	 * Clicks Add to Cart Button 
+	 */
 	public void addProductToCart() {
-		ProductDetailPage productDetailPage = new ProductDetailPage();
-		
+
 		productDetailPage.addToCart();
 	}
 
-	//-------------------------------------------------------------------------
+	// -------------------------------------------------------------------------
+	/**
+	 * Clicks Proceed to Checkout Button.
+	 */
 	public void proceedToCheckout() {
-		ProductDetailPage productDetailPage = new ProductDetailPage();
-		WebDriverUtil wdu = new WebDriverUtil();
 		productDetailPage.proceedToCheckout();
 		wdu.waitForUrlChange();
 	}

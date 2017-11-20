@@ -9,6 +9,13 @@ import demo.bo.Product;
 
 public class SearchResultsPage extends BasePage {
 
+	/**
+	 * Implements user actions on the Sarch Result Page - Navigate to Product
+	 * Detail Page for the matched product
+	 */
+
+	private static final String RESULT_LIST_DIV_XPATH = "//*[@id=\"ctl00_CC_ProductSearchResultListing_SearchProductListing\"]/ul/div";
+
 	// ------------------------------------------------------------------------
 	public SearchResultsPage() {
 		super();
@@ -20,8 +27,7 @@ public class SearchResultsPage extends BasePage {
 		List<WebElement> liWes;
 		WebElement productFoundWe = null;
 
-		divWes = this.driver
-				.findElements(By.xpath("//*[@id=\"ctl00_CC_ProductSearchResultListing_SearchProductListing\"]/ul/div"));
+		divWes = this.driver.findElements(By.xpath(RESULT_LIST_DIV_XPATH));
 		for (WebElement divWe : divWes) {
 			liWes = divWe.findElements(By.xpath("./li"));
 			for (WebElement liWe : liWes) {
@@ -42,13 +48,12 @@ public class SearchResultsPage extends BasePage {
 		WebElement productDescriptionWe = null;
 		WebElement productFoundWe = null;
 		String productDescription = null;
-		boolean productMatch = true;
 
 		productDescriptionWe = liWe.findElement(By.xpath("./div/div[2]/h4/a"));
 		productDescription = productDescriptionWe.getText();
-		productMatch = productDescription.contains(product.getManufacturer());
-		productMatch = productMatch && productDescription.contains(product.getModel());
-		if (productMatch) {
+
+		if ((productDescription != null) && productDescription.contains(product.getManufacturer())
+				&& productDescription.contains(product.getModel())) {
 			productFoundWe = productDescriptionWe;
 		}
 		return productFoundWe;

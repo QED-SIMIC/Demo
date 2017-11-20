@@ -7,18 +7,18 @@ import org.openqa.selenium.support.ui.Select;
 
 public class WebElementUtil {
 
+	/**
+	 * Provide value added operations on top of WebElement:
+	 * - Entering value in the text field
+	 * - Select value from drop-down list by visible text
+	 * @param driver
+	 */
 	public WebElementUtil(WebDriver driver) {
 		this.driver = driver;
 	}
 
 	private WebDriver driver;
 
-	// -----------------------------------------------------------------------
-	// Here we assume that the input data will never be, such as firstName will
-	// never be null
-	// If firstName can be null, the implemented semantics is:
-	// * fistName == null => do not update
-	// * first name == "" => clear the field.
 	// -----------------------------------------------------------------------
 	public void setTextField(String text, String textFieldXpath) {
 		WebElement textFieldWe;

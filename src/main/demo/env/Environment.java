@@ -9,6 +9,13 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class Environment {
 
+	/**
+	 * Environment class is a singleton keeping the information specific for the
+	 * environment in which the test is run, current WebDriver instance, current
+	 * system udner test build. Environment class can read the information from
+	 * a file or environment variables,
+	 */
+
 	public final static Dimension DESKTOP_VIEWPORT = new Dimension(1300, 700);
 	public static final Dimension TABLET_PORTRAIT = new Dimension(768 + 36, 1024);
 	public static final Dimension TABLET_LANDSCAPE = new Dimension(1024 + 39, 768);
@@ -17,16 +24,26 @@ public class Environment {
 	private final static String CHROME_WEB_DRIVER_FILE_PATH = "C:\\Selenium\\Driver\\chromedriver.exe";
 	private final static String CHROME_WB_DRIVER_PROPERTY = "webdriver.chrome.driver";
 
+	// ------------------------------------------------------------------------
+	private static Environment env = new Environment();
 	// -------------------------------------------------------------
-	private static WebDriver driver = null;
+	private WebDriver driver = null;
 
 	private Point initialtBrowserPosition;
 	private Dimension initialViewport;
 
 	// ------------------------------------------------------------------------
-	public Environment() {
+	// Singleton
+	// --------------------------------------------------------------------------
+	private Environment() {
 		this.initialtBrowserPosition = BROWSER_INITIAL_POSITION;
 		this.initialViewport = DESKTOP_VIEWPORT;
+		this.driver = null;
+	}
+
+	// ------------------------------------------------------------------------
+	public static Environment getInstance() {
+		return env;
 	}
 
 	// --------------------------------------------------------------------
@@ -37,17 +54,17 @@ public class Environment {
 		chromeWebDriverExeFile = new File(CHROME_WEB_DRIVER_FILE_PATH);
 		System.setProperty(CHROME_WB_DRIVER_PROPERTY, chromeWebDriverExeFile.getAbsolutePath());
 
-		Environment.driver = new ChromeDriver();
+		this.driver = new ChromeDriver();
 
-		Environment.driver.manage().window().setPosition(this.initialtBrowserPosition);
-		Environment.driver.manage().window().setSize(this.initialViewport);
+		this.driver.manage().window().setPosition(this.initialtBrowserPosition);
+		this.driver.manage().window().setSize(this.initialViewport);
 
-		return Environment.driver;
+		return this.driver;
 	}
 
 	// --------------------------------------------------------------------
 	public WebDriver getCurrentDriver() {
-		return Environment.driver;
+		return this.driver;
 	}
 
 }

@@ -16,107 +16,31 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import demo.env.Environment;
-import demo.env.RunTimeError;
+import demo.env.RuntimeError;
 
 public class WebDriverUtil {
 
-	private final static int WAIT_BETWEEN_RETRIES_SEC = 2;
-	private final static int MAX_RETRIES = 15;
-	private final static int MAX_WAIT_FOR_ELEMENT = 15;
+	/**
+	 * Provides value added operations on top of WebDriber - Wait for URL change
+	 * - Take Screen-shot
+	 */
 
 	private WebDriver driver;
 	private Environment env;
 	private String rememberedUrl;
-	private Set<String> winHandlesBeforeActionOpeningNewWindow;
-	private String winHandleBeforeActionOpeningNewWindow;
 
 	// --------------------------------------------------------------------
 	public WebDriverUtil() {
 
-		this.env = new Environment();
+		this.env = Environment.getInstance();
 		this.driver = this.env.getCurrentDriver();
 		this.rememberedUrl = this.driver.getCurrentUrl();
-		this.winHandlesBeforeActionOpeningNewWindow = this.driver.getWindowHandles();
-		this.winHandleBeforeActionOpeningNewWindow = this.driver.getWindowHandle();
-
-	}
-
-	// -----------------------------------------------------------------------
-	public String getCurrentUrlNoWait() {
-		String currentUrl;
-		currentUrl = this.driver.getCurrentUrl();
-		return currentUrl;
-	}
-
-	// ------------------------------------------------------------------------
-	public String getCurrentUrlAfterChange(String oldUrl) {
-
-		String currentUrl = null;
-		boolean urlChanged = false;
-
-		for (int i = 1; i < 25; i++) {
-			currentUrl = this.driver.getCurrentUrl();
-			if (!oldUrl.equalsIgnoreCase(currentUrl)) {
-				urlChanged = true;
-				break;
-			}
-		}
-		if (!urlChanged) {
-			RunTimeError.raiseStatic("WebDriverUtil.getCurrentUrlAfterChange-- " + "URL did not change " + oldUrl);
-		}
-		return currentUrl;
 	}
 
 	// -----------------------------------------------------------------------
 	public void close() {
 		this.driver.close();
 		this.driver.quit();
-	}
-
-	// -----------------------------------------------------------------------
-	public void closeWindow() {
-		this.driver.close();
-		this.driver.switchTo().window(this.winHandleBeforeActionOpeningNewWindow);
-	}
-
-	// ----------------------------------------------------
-	public void acceptAlert() {
-		Alert alert;
-		if (this.isAlertPresent()) {
-			alert = driver.switchTo().alert();
-			alert.accept();
-		} else {
-			RunTimeError.raiseStatic("Expected Alert Not Present!");
-		}
-	}
-
-	// ----------------------------------------------------
-	public boolean isAlertPresent() {
-		boolean presentFlag = false;
-		Alert alert;
-
-		try {
-			// Check the presence of alert
-			alert = this.driver.switchTo().alert();
-			// Alert present; set the flag
-			presentFlag = true;
-		} catch (NoAlertPresentException ex) {
-			presentFlag = false;
-		}
-		return presentFlag;
-	}
-
-	// ------------------------------------------------------
-	public String getAlertText() {
-		String alertText = null;
-		Alert alert;
-		if (this.isAlertPresent()) {
-			alert = this.driver.switchTo().alert();
-			alertText = alert.getText();
-		} else {
-			RunTimeError.raiseStatic("Expected Alert Not Present!");
-		}
-		return alertText;
 	}
 
 	// ---------------------------------------------------------------------
@@ -126,7 +50,7 @@ public class WebDriverUtil {
 		String currentUrl;
 		boolean urlChanged = false;
 		for (int i = 1; i <= 30; i++) {
-			this.waitSeconds(2);
+			this.waitSeconds(1);
 			currentUrl = this.driver.getCurrentUrl();
 			if (!this.rememberedUrl.equals(currentUrl)) {
 				urlChanged = true;
@@ -134,7 +58,7 @@ public class WebDriverUtil {
 			}
 		}
 		if (!urlChanged) {
-			RunTimeError.raiseStatic("Expected URL Change Did Not Occur in 60 Sec");
+			RuntimeError.raiseStatic("Expected URL Change Did Not Occur in 30 Sec");
 		}
 	}
 
@@ -147,8 +71,8 @@ public class WebDriverUtil {
 		try {
 			FileUtils.copyFile(screenshotFile, new File(filePath));
 		} catch (IOException ex) {
-			RunTimeError
-					.raiseStatic("Unable to take screenshot " + filePath + "\n" + RunTimeError.exceptionToString(ex));
+			RuntimeError
+					.raiseStatic("Unable to take screenshot " + filePath + "\n" + RuntimeError.throwableToString(ex));
 		}
 	}
 
@@ -161,32 +85,6 @@ public class WebDriverUtil {
 		} catch (Exception ex) {
 			return false;
 		}
-	}
-
-	// ----------------------------------------------------------------------
-	public void switchToIFrame(String iFrameXPath) {
-		WebElement iFrameWe;
-
-		iFrameWe = this.driver.findElement(By.xpath(iFrameXPath));
-		for (int i = 1; i <= 10; i++) {
-			try {
-				waitSeconds(1);
-				driver.switchTo().frame(iFrameWe);
-				this.waitSeconds(1);
-				break;
-			} catch (Exception e) {
-				i = i + 1;
-			}
-		}
-	}
-
-	// ------------------------------------------------------------------------------------------------------
-	public WebElement findAndWaitUntilClickable(String xpath) {
-		WebElement we;
-		WebDriverWait wait = new WebDriverWait(driver, 30);
-		we = this.driver.findElement(By.xpath(xpath));
-		wait.until(ExpectedConditions.elementToBeClickable(we));
-		return we;
 	}
 
 }

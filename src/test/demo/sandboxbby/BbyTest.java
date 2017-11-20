@@ -21,7 +21,7 @@ import demo.collaborator.SearchCollaborator;
 import demo.env.Environment;
 import demo.harness.ResultClerk;
 import demo.harness.ResultMonitor;
-import demo.sandboxbby.data.BbyData;
+import demo.sandboxbby.data.BbyTestData;
 
 public class BbyTest {
 
@@ -52,7 +52,7 @@ public class BbyTest {
 	public void beforeTest() {
 
 		BasicConfigurator.configure();
-		env = new Environment();
+		env = Environment.getInstance();
 		driver = this.env.createAndSetWebDriver();
 		resultClerk.recordBeginTest(this.currentTestName.getMethodName());
 	}
@@ -69,15 +69,15 @@ public class BbyTest {
 		boolean errorMessageDisplayed = false;
 		String errorMessage = "The format of the credit card number entered does not match the card type you specified. Please check for accuracy and try again. (0018)";
 
-		BbyData bbyData = new BbyData();
+		BbyTestData bbyData = new BbyTestData();
 		SearchCollaborator search = new SearchCollaborator();
 		CheckoutCollaborator checkout = new CheckoutCollaborator();
 
-		product = bbyData.getProduct_A();
-		checkoutMethod = bbyData.getCheckoutMethod_A();
-		customer = bbyData.getCustomer_A();
-		creditCard = bbyData.getCreaditCard_A();
-		billingAddress = bbyData.getbillingAddress_A();
+		product = bbyData.getProduct();
+		checkoutMethod = bbyData.getCheckoutMethod();
+		customer = bbyData.getCustomer();
+		creditCard = bbyData.getCreditCard();
+		billingAddress = bbyData.getbillingAddress();
 
 		driver.get("https://www.bestbuy.ca/");
 
