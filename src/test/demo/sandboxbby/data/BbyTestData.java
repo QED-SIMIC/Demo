@@ -53,6 +53,7 @@ public class BbyTestData {
 		creditCard.setNumber("111222333444");
 		creditCard.setExpirationMonth("02");
 		creditCard.setExpirationYear("2020");
+		creditCard.setCvv("123");
 		return creditCard;
 	}
 

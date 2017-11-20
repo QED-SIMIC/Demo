@@ -73,7 +73,7 @@ public class SearchCollaborator {
 
 	// -------------------------------------------------------------------------
 	/**
-	 * Precondityion: THe driver must be on the Product Detail Page.
+	 * Precondition: The driver must be on the Product Detail Page.
 	 * Clicks Add to Cart Button
 	 */
 	/**
@@ -87,7 +87,7 @@ public class SearchCollaborator {
 	// -------------------------------------------------------------------------
 	/**
 	 * Precondition: The driver must be on the Product Detail Page.
-	 * - THe Product must had been just added to the Cart.
+	 * - The Product must had been just added to the Cart.
 	 * Clicks Proceed to Checkout Button.
 	 */
 	public void proceedToCheckout() {

@@ -38,7 +38,7 @@ public class CheckoutPage extends BasePage {
 	private static final String CONFIRMATION_EMAIL_XPATH = "//*[@id=\"ctl00_CP_checkoutSections_ctl03_ucPaymentEdit_TxtEmailAddress\"]";
 	private static final String BILLING_NUMBER_SAME_CHECKBOX_XPATH = "//*[@id=\"ctl00_CP_checkoutSections_ctl03_ucPaymentEdit_UCEditCreditCard_ChkSameAsShipping\"]";
 	private static final String COMPLETE_CHECKOUT_BUTTON_XPATH = "//*[@id=\"ctl00_CP_checkoutSections_ctl03_ucPaymentEdit_BtnContinueFromPayment\"]/span";
-	private static final String DISPLAYED_ERROR_MESSAGEs_LIST_XPATH = "//*[@id=\"ctl00_CP_ErrorSummaryUC12_ValidationSummary1\"]/ul";
+	private static final String DISPLAYED_ERROR_MESSAGES_LIST_XPATH = "//*[@id=\"ctl00_CP_ErrorSummaryUC12_ValidationSummary1\"]/ul";
 
 	// ------------------------------------------------------------------------
 	public CheckoutPage() {
@@ -165,7 +165,7 @@ public class CheckoutPage extends BasePage {
 		WebElement topWe;
 		List<WebElement> messageWes;
 
-		topWe = this.driver.findElement(By.xpath(DISPLAYED_ERROR_MESSAGEs_LIST_XPATH));
+		topWe = this.driver.findElement(By.xpath(DISPLAYED_ERROR_MESSAGES_LIST_XPATH));
 
 		messageWes = topWe.findElements(By.xpath("./li"));
 

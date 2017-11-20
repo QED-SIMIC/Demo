@@ -13,16 +13,14 @@ import demo.page.SelectCheckoutMethodPage;
 
 public class CheckoutCollaborator {
 
-	   /** 
-     * CheckoutCollaborator implements the set of operations that a user
-     * performs during the checkout process.
-     */
-	
-	
-	
+	/**
+	 * CheckoutCollaborator implements the set of operations that a user
+	 * performs during the checkout process.
+	 */
+
 	private SelectCheckoutMethodPage selectCheckoutMethodPage;
 	private CheckoutPage checkoutPage;
-	
+
 	// -------------------------------------------------------------------------
 	public CheckoutCollaborator() {
 		this.selectCheckoutMethodPage = new SelectCheckoutMethodPage();
@@ -32,7 +30,9 @@ public class CheckoutCollaborator {
 	// -------------------------------------------------------------------------
 	/**
 	 * Precondition: The driver must be on the Select Checkout Method Page
-	 * @param checkout - Checkout method to execute (Guest/Member)
+	 * 
+	 * @param checkout
+	 *            - Checkout method to execute (Guest/Member)
 	 */
 	public void selectCheckoutMethod(Checkout checkout) {
 		CheckoutMethod requestedCheckoutMethod;
@@ -65,10 +65,11 @@ public class CheckoutCollaborator {
 
 	// -------------------------------------------------------------------------
 	/**
-	 * Precondition: The driver must be on the  Checkout  Page
-	 * Populate Customer data
+	 * Precondition: The driver must be on the Checkout Page Populate Customer
+	 * data
 	 * 
-	 * @param customer Customer object with values to enter on the page.
+	 * @param customer
+	 *            Customer object with values to enter on the page.
 	 */
 	public void populateCustomer(Customer customer) {
 
@@ -84,10 +85,11 @@ public class CheckoutCollaborator {
 
 	// -------------------------------------------------------------------------
 	/**
-	 * Precondition: The driver must be on the  Checkout  Page
-	 * Populates Credit Card information on the page
+	 * Precondition: The driver must be on the Checkout Page Populates Credit
+	 * Card information on the page
 	 * 
-	 * @param creditCard - Credit Card information to enter on the page.
+	 * @param creditCard
+	 *            - Credit Card information to enter on the page.
 	 */
 	public void populateCreditCard(CreditCard creditCard) {
 
@@ -102,8 +104,10 @@ public class CheckoutCollaborator {
 	/**
 	 * Populates billing information.
 	 * 
-	 * Precondition: The driver must be on the  Checkout  Page
-	 * @param billingAddress - Billing inforamtion info to enter on the page.
+	 * Precondition: The driver must be on the Checkout Page
+	 * 
+	 * @param billingAddress
+	 *            - Billing inforamtion info to enter on the page.
 	 */
 	public void populateBillingAddress(Address billingAddress) {
 
@@ -117,8 +121,8 @@ public class CheckoutCollaborator {
 
 	// -------------------------------------------------------------------------
 	/**
-	 * Precondition: The driver must be on the  Checkout  Page
-	 * Clicks Continue to Delivery addres and Payment button.
+	 * Precondition: The driver must be on the Checkout Page Clicks Continue to
+	 * Delivery addres and Payment button.
 	 */
 	public void continueToDeliveryAddressAndPayment() {
 		checkoutPage.continueToDeliveryAddressAndPayment();
@@ -126,8 +130,8 @@ public class CheckoutCollaborator {
 
 	// -------------------------------------------------------------------------
 	/**
-	 * Precondition: The driver must be on the  Checkout  Page
-	 * clicks complete Checkout button.
+	 * Precondition: The driver must be on the Checkout Page clicks complete
+	 * Checkout button.
 	 */
 	public void completeCheckout() {
 		checkoutPage.completeCheckout();
@@ -135,10 +139,11 @@ public class CheckoutCollaborator {
 
 	// -------------------------------------------------------------------------
 	/**
-	 * Precondition: The driver must be on the  Checkout  Page
-	 * Verifies that the page displays the given error message.
+	 * Precondition: The driver must be on the Checkout Page Verifies that the
+	 * page displays the given error message.
 	 * 
-	 * @param expectedErrorMessage - Expected Error Me3ssage Test 
+	 * @param expectedErrorMessage
+	 *            - Expected Error Me3ssage Test
 	 * @return true if the page displays the expected mesage.
 	 */
 	public boolean verifyErrorMessageDisplayed(String expectedErrorMessage) {
