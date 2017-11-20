@@ -11,17 +11,17 @@ public class Address {
 
 	}
 
-	private Boolean billingAddresSameAsShipping;
+	private Boolean billingAddressSameAsShipping;
 	private String confirmationEmail;
 
 	// -------------------------------------------------------------------------
 	public Boolean getBillingAddresSamesAsShipping() {
-		return billingAddresSameAsShipping;
+		return billingAddressSameAsShipping;
 	}
 
 	// -------------------------------------------------------------------------
 	public void setBillingAddressSamesAsShipping(Boolean billingAddressSamesAsShipping) {
-		this.billingAddresSameAsShipping = billingAddresSameAsShipping;
+		this.billingAddressSameAsShipping = billingAddressSamesAsShipping;
 	}
 
 	// -------------------------------------------------------------------------

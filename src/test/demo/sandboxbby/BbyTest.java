@@ -60,7 +60,7 @@ public class BbyTest {
 	// --------------------------------------------------------------------
 	@Test
 	// --------------------------------------------------------------------
-	public void shopAtBestBuy_A() {
+	public void shopAtBestBuy() {
 		Product product;
 		Checkout checkoutMethod;
 		Customer customer;
