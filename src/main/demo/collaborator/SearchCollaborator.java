@@ -28,7 +28,7 @@ public class SearchCollaborator {
 
 	// -------------------------------------------------------------------------
 	/*
-	 * Executes global search for the given product
+	 * Executes global search for the given product.
 	 */
 	/**
 	 * @param product - Product for which this method executes global searc.
@@ -53,7 +53,13 @@ public class SearchCollaborator {
 	}
 
 	// -------------------------------------------------------------------------
-	/** Selects the first product that matches the given product and
+	/**
+	 * Preconditions: 
+	 * - The driver must be on the Search Results Page.
+	 * - The serch result page must be displaying the product
+	 * matching the givedn product.
+	 *  
+	 * Selects the first product that matches the given product and
 	 * navigates to Product Detail Page for the product.
 	 * 
 	 * @param product - Product to match, i.e. product description 
@@ -67,6 +73,7 @@ public class SearchCollaborator {
 
 	// -------------------------------------------------------------------------
 	/**
+	 * Precondityion: THe driver must be on the Product Detail Page.
 	 * Clicks Add to Cart Button
 	 */
 	/**
@@ -79,6 +86,8 @@ public class SearchCollaborator {
 
 	// -------------------------------------------------------------------------
 	/**
+	 * Precondition: The driver must be on the Product Detail Page.
+	 * - THe Product must had been just added to the Cart.
 	 * Clicks Proceed to Checkout Button.
 	 */
 	public void proceedToCheckout() {

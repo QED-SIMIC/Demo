@@ -31,6 +31,7 @@ public class CheckoutCollaborator {
 
 	// -------------------------------------------------------------------------
 	/**
+	 * Precondition: The driver must be on the Select Checkout Method Page
 	 * @param checkout - Checkout method to execute (Guest/Member)
 	 */
 	public void selectCheckoutMethod(Checkout checkout) {
@@ -54,7 +55,8 @@ public class CheckoutCollaborator {
 
 	// -------------------------------------------------------------------------
 	/**
-	 * Clicks COntinue to Checkut Button
+	 * Precondition: The driver must be on the Select Checkout Method Page
+	 * Clicks Continue to Checkut Button
 	 */
 	public void continueCheckout() {
 		selectCheckoutMethodPage.clickContinueCheckout();
@@ -63,6 +65,7 @@ public class CheckoutCollaborator {
 
 	// -------------------------------------------------------------------------
 	/**
+	 * Precondition: The driver must be on the  Checkout  Page
 	 * Populate Customer data
 	 * 
 	 * @param customer Customer object with values to enter on the page.
@@ -81,6 +84,7 @@ public class CheckoutCollaborator {
 
 	// -------------------------------------------------------------------------
 	/**
+	 * Precondition: The driver must be on the  Checkout  Page
 	 * Populates Credit Card information on the page
 	 * 
 	 * @param creditCard - Credit Card information to enter on the page.
@@ -98,6 +102,7 @@ public class CheckoutCollaborator {
 	/**
 	 * Populates billing information.
 	 * 
+	 * Precondition: The driver must be on the  Checkout  Page
 	 * @param billingAddress - Billing inforamtion info to enter on the page.
 	 */
 	public void populateBillingAddress(Address billingAddress) {
@@ -112,7 +117,8 @@ public class CheckoutCollaborator {
 
 	// -------------------------------------------------------------------------
 	/**
-	 * CLicks Continue to Delivery addres and Payment button.
+	 * Precondition: The driver must be on the  Checkout  Page
+	 * Clicks Continue to Delivery addres and Payment button.
 	 */
 	public void continueToDeliveryAddressAndPayment() {
 		checkoutPage.continueToDeliveryAddressAndPayment();
@@ -120,6 +126,7 @@ public class CheckoutCollaborator {
 
 	// -------------------------------------------------------------------------
 	/**
+	 * Precondition: The driver must be on the  Checkout  Page
 	 * clicks complete Checkout button.
 	 */
 	public void completeCheckout() {
@@ -128,6 +135,7 @@ public class CheckoutCollaborator {
 
 	// -------------------------------------------------------------------------
 	/**
+	 * Precondition: The driver must be on the  Checkout  Page
 	 * Verifies that the page displays the given error message.
 	 * 
 	 * @param expectedErrorMessage - Expected Error Me3ssage Test 

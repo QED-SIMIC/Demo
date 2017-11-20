@@ -25,6 +25,17 @@ import demo.sandboxbby.data.BbyTestData;
 
 public class BbyTest {
 
+	/**
+	 * BbyTest implements an example of the autmated Selenium Test
+	 * verifying the an aspect of the customer on-line shopping experience.
+	 * 
+	 * The test searches for the given product on www.betbuy.ca, then selects
+	 * the product and continues through the checkout process to
+	 * the checkout process completion. As the test enters an incorrect
+	 * Credit Card Number, the test verifies that the system displays the expected
+	 * error message.
+	*/
+	
 	private static ResultClerk resultClerk = ResultClerk.getInstance();
 	private Environment env;
 	private WebDriver driver;
